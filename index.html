@@ -1,139 +1,168 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contador</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
-    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 border border-gray-100">
-        <!-- Header (cabeçalho) -->
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Contador</h1>
-            <p class="text-gray-600">Clique nos botões para incrementar ou decrementar</p>
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center"
+  >
+    <div
+      class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 border border-gray-100"
+    >
+      <!-- Header (cabeçalho) -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Contador</h1>
+        <p class="text-gray-600">
+          Clique nos botões para incrementar ou decrementar
+        </p>
+      </div>
+
+      <!-- Display do contador -->
+      <div class="text-center mb-8">
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 shadow-inner"
+        >
+          <span id="contador" class="text-5xl font-bold text-white">0</span>
         </div>
-        
-        <!-- Display do contador -->
-        <div class="text-center mb-8">
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 shadow-inner">
-                <span id="contador" class="text-5xl font-bold text-white">0</span>
-            </div>
-        </div>
-        
-        <!-- Botões -->
-        <div class="flex gap-4 justify-center mb-6">
-            <button 
-                id="decrementar" 
-                class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
-            >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                </svg>
-            </button>
-            
-            <button 
-                id="incrementar" 
-                class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
-            >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                </svg>
-            </button>
-        </div>
-        
-        <!-- Botão de reset -->
-        <div class="text-center">
-            <button 
-                id="reset" 
-                class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-            >
-                Resetar
-            </button>
-        </div>
-        
-        <!-- Info adicional -->
-        <div class="mt-6 text-center text-sm text-gray-500">
-            <p>Valor atual: <span id="valor-info" class="font-semibold">0</span></p>
-        </div>
+      </div>
+
+      <!-- Botões (interacão) -->
+      <div class="flex gap-4 justify-center mb-6">
+        <button
+          id="decrementar"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20 12H4"
+            ></path>
+          </svg>
+        </button>
+
+        <button
+          id="incrementar"
+          class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4v16m8-8H4"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Botão de reset -->
+      <div class="text-center">
+        <button
+          id="reset"
+          class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          Resetar
+        </button>
+      </div>
+
+      <!-- Info adicional -->
+      <div class="mt-6 text-center text-sm text-gray-500">
+        <p>Valor atual: <span id="valor-info" class="font-semibold">0</span></p>
+      </div>
     </div>
 
     <script>
-        // Estado do contador
-        let contador = 0;
-        
-        // Elementos do DOM
-        const contadorDisplay = document.getElementById('contador');
-        const valorInfo = document.getElementById('valor-info');
-        const btnIncrementar = document.getElementById('incrementar');
-        const btnDecrementar = document.getElementById('decrementar');
-        const btnReset = document.getElementById('reset');
-        
-        // Função para atualizar o display
-        function atualizarDisplay() {
-            contadorDisplay.textContent = contador;
-            valorInfo.textContent = contador;
-            
-            // Adiciona efeito visual baseado no valor
-            contadorDisplay.className = contador > 0 
-                ? 'text-5xl font-bold text-green-100 transition-colors duration-300'
-                : contador < 0 
-                ? 'text-5xl font-bold text-red-100 transition-colors duration-300'
-                : 'text-5xl font-bold text-white transition-colors duration-300';
-        }
-        
-        // Event listeners
-        btnIncrementar.addEventListener('click', () => {
-            contador++;
-            atualizarDisplay();
-            
-            // Efeito visual no botão
-            btnIncrementar.classList.add('bg-green-600');
-            setTimeout(() => btnIncrementar.classList.remove('bg-green-600'), 150);
-        });
-        
-        btnDecrementar.addEventListener('click', () => {
-            contador--;
-            atualizarDisplay();
-            
-            // Efeito visual no botão
-            btnDecrementar.classList.add('bg-red-600');
-            setTimeout(() => btnDecrementar.classList.remove('bg-red-600'), 150);
-        });
-        
-        btnReset.addEventListener('click', () => {
-            contador = 0;
-            atualizarDisplay();
-            
-            // Efeito visual no botão
-            btnReset.classList.add('bg-gray-600');
-            setTimeout(() => btnReset.classList.remove('bg-gray-600'), 150);
-        });
-        
-        // Suporte para teclado
-        document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case 'ArrowUp':
-                case '+':
-                    e.preventDefault();
-                    btnIncrementar.click();
-                    break;
-                case 'ArrowDown':
-                case '-':
-                    e.preventDefault();
-                    btnDecrementar.click();
-                    break;
-                case '0':
-                case 'r':
-                case 'R':
-                    e.preventDefault();
-                    btnReset.click();
-                    break;
-            }
-        });
-        
-        // Inicializa o display
+      // Estado do contador
+      let contador = 0;
+
+      // Elementos do DOM
+      const contadorDisplay = document.getElementById("contador");
+      const valorInfo = document.getElementById("valor-info");
+      const btnIncrementar = document.getElementById("incrementar");
+      const btnDecrementar = document.getElementById("decrementar");
+      const btnReset = document.getElementById("reset");
+
+      // Função para atualizar o display
+      function atualizarDisplay() {
+        contadorDisplay.textContent = contador;
+        valorInfo.textContent = contador;
+
+        // Adiciona efeito visual baseado no valor
+        contadorDisplay.className =
+          contador > 0
+            ? "text-5xl font-bold text-green-100 transition-colors duration-300"
+            : contador < 0
+            ? "text-5xl font-bold text-red-100 transition-colors duration-300"
+            : "text-5xl font-bold text-white transition-colors duration-300";
+      }
+
+      // Event listeners
+      btnIncrementar.addEventListener("click", () => {
+        contador++;
         atualizarDisplay();
+
+        // Efeito visual no botão
+        btnIncrementar.classList.add("bg-green-600");
+        setTimeout(() => btnIncrementar.classList.remove("bg-green-600"), 150);
+      });
+
+      btnDecrementar.addEventListener("click", () => {
+        contador--;
+        atualizarDisplay();
+
+        // Efeito visual no botão
+        btnDecrementar.classList.add("bg-red-600");
+        setTimeout(() => btnDecrementar.classList.remove("bg-red-600"), 150);
+      });
+
+      btnReset.addEventListener("click", () => {
+        contador = 0;
+        atualizarDisplay();
+
+        // Efeito visual no botão
+        btnReset.classList.add("bg-gray-600");
+        setTimeout(() => btnReset.classList.remove("bg-gray-600"), 150);
+      });
+
+      // Suporte para teclado
+      document.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case "ArrowUp":
+          case "+":
+            e.preventDefault();
+            btnIncrementar.click();
+            break;
+          case "ArrowDown":
+          case "-":
+            e.preventDefault();
+            btnDecrementar.click();
+            break;
+          case "0":
+          case "r":
+          case "R":
+            e.preventDefault();
+            btnReset.click();
+            break;
+        }
+      });
+
+      // Inicializa o display
+      atualizarDisplay();
     </script>
-</body>
+  </body>
 </html>
